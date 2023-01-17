@@ -31,6 +31,14 @@ describe "#make_move" do
       game.make_move(:x)
       allow(game).to receive(:gets).and_return("3")
       game.make_move(:x)
+      allow(game).to receive(:gets).and_return("3")
+      game.make_move(:x)
+      allow(game).to receive(:gets).and_return("3")
+      game.make_move(:x)
+      allow(game).to receive(:gets).and_return("3")
+      game.make_move(:x)
+      allow(game).to receive(:gets).and_return("3")
+      game.make_move(:x)
     end
 
     it "places their symbol in the correct position" do
@@ -40,6 +48,12 @@ describe "#make_move" do
     it "places their symbol on top of their previous input" do
       expect(game.board[4][2]).to eq :x
     end
+
+    it "rejects it if every position is full in that row" do
+        allow(game).to receive(:gets).and_return("3")
+        expect{ game.make_move(:x)}.to output(/That row is full! Please select another one./).to_stdout
+    end
+
 
   end
 
@@ -51,8 +65,7 @@ describe "#make_move" do
       allow(invalid_game).to receive(:gets).and_return("A")
       expect{ invalid_game.make_move(:x)}.to output(/Invalid input. Please check your input and try again./).to_stdout
     end
-    
-  end
 
+  end
 
 end
