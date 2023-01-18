@@ -122,6 +122,27 @@ describe "#winner" do
 
 end
 
+describe "#board_full" do
+
+  subject(:full_game) { Connect_Four.new}
+
+  context "when the board is full" do
+    before do
+      (0..5).each do |row|
+        (0..6).each do |col|
+          full_game.board[row][col] = "filler"
+        end
+      end
+    end
+
+    it "return true" do
+      expect(full_game.board_full?).to be_truthy
+    end
+
+  end
+  
+end
+
 describe "#play_game" do
 
   subject(:looping_game) { Connect_Four.new }
