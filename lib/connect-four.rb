@@ -26,6 +26,48 @@ class Connect_Four
       end
     end
   end
+
+  def winner
+    winning_lines.each do |line|
+      return line.first if line.uniq.size == 1 && !line.first.nil?
+    end
+    nil
+  end
+
+  def winning_lines
+    lines = []
+
+    # verticle wins
+    (0..2).each do |row|
+      (0..6).each do |col|
+        lines << [board[row][col], board[row+1][col], board[row+2][col], board[row+3][col]] 
+      end
+    end
+
+    # horizontal wins
+    (0..5).each do |row|
+      (0..3).each do |col|
+        lines << [board[row][col], board[row][col+1], board[row][col+2], board[row][col+3]] 
+      end
+    end
+
+    # diagonal wins (top-left to bottom-right)
+    (0..2).each do |row|
+      (0..3).each do |col|
+        lines << [board[row][col], board[row+1][col+1], board[row+2][col+2], board[row+3][col+3]]
+      end
+    end
+
+    # diagonal wins (bottom-left to top-right)
+    (0..2).each do |row|
+      (0..3).each do |col|
+        lines << [board[row+3][col], board[row+2][col+1], board[row+1][col+2], board[row][col+3]]
+      end
+    end
+
+    return lines
+
+  end
     
 end
 
