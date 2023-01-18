@@ -27,6 +27,14 @@ class Connect_Four
     end
   end
 
+  def game_over?
+    winner || board_full?
+  end
+
+  def board_full?
+    board.flatten.none?(&:nil?)
+  end
+
   def winner
     winning_lines.each do |line|
       return line.first if line.uniq.size == 1 && !line.first.nil?
