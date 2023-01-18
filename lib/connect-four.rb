@@ -11,6 +11,24 @@ class Connect_Four
     end
   end
 
+  def play
+    loop do
+      draw_board
+      make_move(:x)
+      break if game_over?
+      draw_board
+      make_move(:o)
+      break if game_over?
+    end
+    if winner
+      draw_board
+      puts "#{winner} wins!"
+    else
+      draw_board
+      puts "It's a tie!"
+    end
+  end
+
   def make_move(player)
     move = gets.to_i - 1
     if !(0..6).include?(move)
@@ -80,4 +98,4 @@ class Connect_Four
 end
 
 # game = Connect_Four.new
-# game.draw_board
+# game.play
