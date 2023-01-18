@@ -149,8 +149,16 @@ describe "#play_game" do
 
   context "after a player makes a move" do
 
-    it "swaps to the other player's symbol" do
+    before do
+      allow(looping_game).to receive(:puts).and_return(nil)
+      allow(looping_game).to receive(:draw_board).and_return(nil)
+      allow(looping_game).to receive(:game_over?).and_return(false, true)
+    end
 
+    it "swaps to the other player's symbol" do
+      expect(looping_game).to receive(:make_move).with(:x).once
+      expect(looping_game).to receive(:make_move).with(:o).once
+      looping_game.play
     end
 
   end
