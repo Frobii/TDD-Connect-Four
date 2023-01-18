@@ -69,3 +69,70 @@ describe "#make_move" do
   end
 
 end
+
+describe "#winner" do
+
+  subject(:winning_game) { Connect_Four.new }
+  
+  context "when a player lines up four of their symbol in a row vertically" do
+    before do
+      winning_game.board[0][0] = :x
+      winning_game.board[1][0] = :x
+      winning_game.board[2][0] = :x
+      winning_game.board[3][0] = :x
+    end
+
+    it "a winner is found" do
+      expect(winning_game.winner).to eq :x
+    end
+
+  end
+
+  subject(:winning_game) { Connect_Four.new }
+  
+  context "when a player lines up four of their symbol in a row horizontally" do
+    before do
+      winning_game.board[0][0] = :x
+      winning_game.board[0][1] = :x
+      winning_game.board[0][2] = :x
+      winning_game.board[0][3] = :x
+    end
+
+    it "a winner is found" do
+      expect(winning_game.winner).to eq :x
+    end
+
+  end
+
+  subject(:winning_game) { Connect_Four.new }
+  
+  context "when a player lines up four of their symbol in a row diagonally" do
+    before do
+      winning_game.board[0][0] = :x
+      winning_game.board[1][1] = :x
+      winning_game.board[2][2] = :x
+      winning_game.board[3][3] = :x
+    end
+
+    it "a winner is found" do
+      expect(winning_game.winner).to eq :x
+    end
+
+  end
+
+end
+
+describe "#play_game" do
+
+  subject(:looping_game) { Connect_Four.new }
+
+  context "after a player makes a move" do
+
+    it "swaps to the other player's symbol" do
+
+    end
+
+  end
+
+end
+
